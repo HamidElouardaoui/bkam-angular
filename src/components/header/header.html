@@ -1,0 +1,72 @@
+
+<header class="w-full bg-white/95 backdrop-blur border-b border-zinc-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 items-center gap-4">
+      
+      <!-- Logo -->
+      <a class="flex items-center gap-3 shrink-0" routerLink="/">
+        <img class="h-8 w-auto" src="assets/logo.svg" alt="Logo" />
+        <span class="sr-only">Accueil</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden md:flex items-center gap-4 custom-nav">
+        <a routerLink="/transverses"
+           class="group inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[16px] font-medium text-zinc-600 hover:text-[#612e77] transition cursor-pointer">
+          <!-- <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 12h18M3 6h18M3 18h18"></path>
+          </svg> -->
+
+         <!-- <i class="fas fa-landmark text-lg"></i> -->
+
+          <span>Transverses</span>
+        </a>
+
+        <a routerLink="/prestations"
+           class="group inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[16px] font-medium text-zinc-900 hover:text-[#612e77] transition cursor-pointer">
+          <!-- <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M7 6h10a2 2 0 0 1 2 2v10H5V8a2 2 0 0 1 2-2z"></path>
+            <path d="M3 10h18"></path>
+          </svg> -->
+          <i class="fas fa-landmark text-lg"></i>
+
+          <span>Prestations administratives</span>
+        </a>
+
+        <a routerLink="/couverture-medicale"
+           class="group inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[16px] font-medium text-zinc-600 hover:text-[#612e77] transition cursor-pointer">
+          <!-- <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg> -->
+          <i class="fas fa-stethoscope text-lg"></i>
+
+          <span>Couverture médicale </span>
+        </a>
+
+        <a routerLink="/centres-vacances"
+           class="group inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[16px] font-medium text-zinc-600 hover:text-[#612e77] transition cursor-pointer">
+          <!-- <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 20h18"></path>
+            <path d="M5 20V8l7-4 7 4v12"></path>
+          </svg> -->
+          <i class="fas fa-umbrella-beach text-lg"></i>
+
+          <span>Centres de vacances</span>
+        </a>
+      </nav>
+
+      <div class="flex-1"></div>
+
+      <!-- User info -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex flex-col text-right">
+          <span class="text-xs text-zinc-500 leading-none">Connecté</span>
+          <span class="text-sm font-medium text-zinc-800">{{ userName }}</span>
+        </div>
+        <div class="h-9 w-9 rounded-full bg-zinc-200 flex items-center justify-center text-sm font-semibold text-zinc-700">
+          {{ initials }}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
