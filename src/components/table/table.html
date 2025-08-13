@@ -1,0 +1,58 @@
+<div class="mx-auto max-w-7xl">
+  <!-- Header -->
+  <div class="grid grid-cols-12 gap-4 px-6 text-[12px] font-medium uppercase tracking-wide text-zinc-400">
+    <div class="col-span-4">Raison sociale</div>
+    <div class="col-span-4">Type demande</div>
+    <div class="col-span-2">Date création</div>
+    <div class="col-span-1">Statut</div>
+    <div class="col-span-1 text-right pr-2">Actions</div>
+  </div>
+
+  <!-- Rows -->
+  <div class="mt-3 space-y-3">
+    <div
+      *ngFor="let r of rows"
+      class="grid grid-cols-12 items-center gap-4 border border-zinc-200 bg-white px-6 py-5 shadow-[rgba(0,60,99,0.04)_0px_0px_14px_0px] transition " 
+    >
+      <!-- Company -->
+      <div class="col-span-4">
+        <div class="text-[15px] font-medium text-zinc-800">{{ r.company }}</div>
+      </div>
+
+      <!-- Type -->
+      <div class="col-span-4">
+        <div class="text-[14px] text-zinc-600">{{ r.type }}</div>
+      </div>
+
+      <!-- Created -->
+      <div class="col-span-2">
+        <div class="text-[14px] text-zinc-600">{{ r.createdAt }}</div>
+      </div>
+
+      <!-- Status pill -->
+      <div class="col-span-1">
+        <span class="inline-flex items-center rounded-full px-3 py-1 text-[12px] font-semibold"
+              [ngClass]="pillClasses(r.status)">
+          <span class="mr-2 inline-block h-2 w-2 rounded-full" [ngClass]="dotClasses(r.status)"></span>
+          {{ r.status }}
+        </span>
+      </div>
+
+      <!-- Actions -->
+      <div class="col-span-1">
+        <div class="flex justify-end">
+          <button type="button"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 text-zinc-500 hover:bg-zinc-50 hover:text-zinc-700 transition"
+                  aria-label="Actions">
+            <!-- Ellipsis (vertical) -->
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <circle cx="12" cy="5" r="1.8"></circle>
+              <circle cx="12" cy="12" r="1.8"></circle>
+              <circle cx="12" cy="19" r="1.8"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
