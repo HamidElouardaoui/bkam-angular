@@ -1,4 +1,5 @@
 @import "tailwindcss";
+// @import 'src/styles.scss';
 
 
 
@@ -11,3 +12,29 @@
     display: flex !important;
   }
 }
+
+ .menu-item {
+    width: 100%;
+    text-align: left;
+    border-radius: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #3f3f46; /* zinc-700 */
+    outline: none;
+    transition: background-color 0.2s;
+  }
+  .menu-item:hover {
+    background-color: #f4f4f5; /* zinc-100 */
+  }
+  .menu-item:focus {
+    outline: none;
+  }
+  .menu-item.danger {
+    color: #dc2626; /* red-600 */
+  }
+  .menu-item.danger:hover {
+    background-color: #fef2f2; /* red-50 */
+  }
