@@ -1,7 +1,9 @@
 @import "tailwindcss";
 // @import 'src/styles.scss';
 
-
+html, body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
 
 .custom-nav {
   display: none;
@@ -38,3 +40,23 @@
   .menu-item.danger:hover {
     background-color: #fef2f2; /* red-50 */
   }
+
+  /* Scrollbar styles */
+  
+  /* Hide scrollbar but keep scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+:root {
+  --color-primary: #612e77;
+  --color-secondary: #9b59b6;
+  --color-accent: #f3e8ff;
+  --color-text: #1a1a1a;
+  --color-bg: #ffffff;
+}

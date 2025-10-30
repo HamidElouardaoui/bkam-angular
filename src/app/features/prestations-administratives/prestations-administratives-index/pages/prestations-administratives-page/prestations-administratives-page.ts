@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from "../../../../../../components/header/header";
 import { Table } from "../../../../../../components/table/table";
+import { CarouselComponent } from "../../../../shared/components/carousel-component/carousel-component";
 
 @Component({
   selector: 'app-prestations-administratives-page',
-  imports: [RouterOutlet, Header, Table],
+  imports: [RouterOutlet, Header, Table, CarouselComponent],
   templateUrl: './prestations-administratives-page.html',
   styleUrl: './prestations-administratives-page.scss'
 })
