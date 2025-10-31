@@ -1,7 +1,7 @@
 import { Component, Input, signal } from '@angular/core';
-import { Header } from "../components/header/header";
+import { Header } from "./features/shared/components/header/header";
 import { CommonModule } from '@angular/common';
-import { Table } from "../components/table/table";
+import { Table } from "./features/shared/components/table/table";
 import { RouterOutlet } from '@angular/router';
 export interface RequestRow {
   company: string;

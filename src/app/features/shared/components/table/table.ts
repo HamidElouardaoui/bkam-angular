@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RequestRow } from '../../app/app';
+import { RequestRow } from '../../../../app';
 import { CommonModule } from '@angular/common';
 
 @Component({

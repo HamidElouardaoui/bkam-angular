@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, FileIcon } from 'lucide-angular';
+import { LucideAngularModule, FileIcon, ArrowRight, ArrowLeft } from 'lucide-angular';
 
 
 @Component({
@@ -10,44 +10,45 @@ import { LucideAngularModule, FileIcon } from 'lucide-angular';
   styleUrl: './carousel-component.scss'
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy  {
-  lucidIcons = 
-    {FileIcon: FileIcon};
 
 
   @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
-    activeIndex = 0;
-      autoSlideInterval: any;
-
-
-
-  constructor(private ngZone: NgZone) {}
-
 
 cards = [
     { icon: 'prestations-administratives/Family.svg', title: 'Situation de famille', button: 'Consulter' },
-    { icon: '\prestations-administratives/CheckedDocument.svg', title: 'Bulletins', button: 'Consulter' },
-    { icon: '\prestations-administratives/BooksHolder.svg', title: 'E-Attestation', button: 'Consulter' },
-    { icon: '\prestations-administratives/UsersTalk.svg', title: 'Rendez-vous', button: 'Consulter' },
-    { icon: '\prestations-administratives/Mosque.svg', title: 'Pèlerinage', button: 'Consulter' },
-     { icon: '\prestations-administratives/UserBadge.svg', title: 'Carte', button: 'Consulter' },
+    { icon: 'prestations-administratives/CheckedDocument.svg', title: 'Bulletins', button: 'Consulter' },
+    { icon: 'prestations-administratives/BooksHolder.svg', title: 'E-Attestation', button: 'Consulter' },
+    { icon: 'prestations-administratives/UsersTalk.svg', title: 'Rendez-vous', button: 'Consulter' },
+    { icon: 'prestations-administratives/Mosque.svg', title: 'Pèlerinage', button: 'Consulter' },
+    { icon: 'prestations-administratives/UserBadge.svg', title: 'Carte', button: 'Consulter' },
 
   ];
 
 
+
+
+
+
+
+
+  lucideIcons = { ArrowLeft, ArrowRight };
+  activeIndex = 0;
+  autoSlideInterval!: any;
+
+  constructor(private zone: NgZone) {}
+
   ngAfterViewInit() {
     const container = this.scrollContainer.nativeElement;
 
-    // Start on first real card (skip clone)
+    // Start at first real card (skip left clone)
     const cardWidth = container.scrollWidth / (this.cards.length + 2);
     container.scrollTo({ left: cardWidth, behavior: 'auto' });
 
-    // Scroll listener
     container.addEventListener('scroll', () => {
-      this.ngZone.run(() => this.updateActiveIndex());
+      this.zone.run(() => this.updateActiveIndex());
     });
 
-    // Auto-slide
-    this.startAutoSlide();
+  //  this.startAutoSlide();
   }
 
   ngOnDestroy() {
@@ -64,29 +65,29 @@ cards = [
   scrollLeft() {
     const container = this.scrollContainer.nativeElement;
     const cardWidth = container.scrollWidth / (this.cards.length + 2);
-    let newScrollLeft = container.scrollLeft - cardWidth;
-
-    // If at start, jump to the last real card clone
-    if (newScrollLeft <= 0) {
-      container.scrollTo({ left: cardWidth * this.cards.length, behavior: 'auto' });
-      newScrollLeft = cardWidth * (this.cards.length - 1);
-    }
-
+    const newScrollLeft = container.scrollLeft - cardWidth;
     container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+
+    // Handle looping (if near start)
+    if (newScrollLeft <= 0) {
+      setTimeout(() => {
+        container.scrollTo({ left: cardWidth * this.cards.length, behavior: 'auto' });
+      }, 700);
+    }
   }
 
   scrollRight() {
     const container = this.scrollContainer.nativeElement;
     const cardWidth = container.scrollWidth / (this.cards.length + 2);
-    let newScrollLeft = container.scrollLeft + cardWidth;
-
-    // If at end, jump back to first real card
-    if (newScrollLeft >= cardWidth * (this.cards.length + 1)) {
-      container.scrollTo({ left: cardWidth, behavior: 'auto' });
-      newScrollLeft = cardWidth * 2;
-    }
-
+    const newScrollLeft = container.scrollLeft + cardWidth;
     container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+
+    // Handle looping (if at end)
+    if (newScrollLeft >= cardWidth * (this.cards.length + 1)) {
+      setTimeout(() => {
+        container.scrollTo({ left: cardWidth, behavior: 'auto' });
+      }, 700);
+    }
   }
 
   scrollTo(index: number) {
@@ -101,17 +102,16 @@ cards = [
     const cardWidth = container.scrollWidth / (this.cards.length + 2);
 
     this.autoSlideInterval = setInterval(() => {
-      this.ngZone.run(() => {
-        let newScrollLeft = container.scrollLeft + cardWidth;
+      this.zone.run(() => {
+        const newScrollLeft = container.scrollLeft + cardWidth;
+        container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
 
         if (newScrollLeft >= cardWidth * (this.cards.length + 1)) {
-          // Jump back to first real card instantly (loop)
-          container.scrollTo({ left: cardWidth, behavior: 'auto' });
-          newScrollLeft = cardWidth * 2;
+          setTimeout(() => {
+            container.scrollTo({ left: cardWidth, behavior: 'auto' });
+          }, 700);
         }
-
-        container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
       });
-    }, 4000); // change slide every 4s
+    }, 4000);
   }
 }

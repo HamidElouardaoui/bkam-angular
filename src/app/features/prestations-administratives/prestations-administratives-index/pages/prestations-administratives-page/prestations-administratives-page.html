@@ -21,22 +21,13 @@
 </div>
 
 <!-- 🧱 Main container (carousel + page content) -->
+
 <div class="relative max-w-7xl mx-auto px-6 sm:px-8 md:px-12 -mt-[150px] z-10">
+  
   <!-- 🎠 Carousel overlapping banner -->
+
   <div class="w-full mb-12">
-    <app-carousel-component></app-carousel-component>
+  <app-carousel-component></app-carousel-component>
   </div>
-
-  <!-- 📊 Page sections -->
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-gray-800 mb-2">Demandes en cours</h3>
-      <p class="text-3xl font-bold text-[var(--color-primary)]">0</p>
-    </div>
-
-    <div class="bg-white rounded-xl shadow p-6">
-      <h3 class="font-semibold text-gray-800 mb-2">Statistiques de l'année</h3>
-      <p class="text-gray-500">—</p>
-    </div>
-  </section>
+  <app-statistiques-component></app-statistiques-component>
 </div>
